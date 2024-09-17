@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class Main {
 
     public static void fullEmployee(EmployeeBook book) {

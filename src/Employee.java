@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Employee {
     private String fullName;
     private int department;
@@ -5,6 +7,19 @@ public class Employee {
     private int id;
 
     public static int counter = 1;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return department == employee.department && salary == employee.salary && id == employee.id && Objects.equals(fullName, employee.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, department, salary, id);
+    }
 
     public Employee(String fullName, int department, int salary){
         this.fullName = fullName;
@@ -45,21 +60,8 @@ public class Employee {
         this.salary = salary;
     }
 
-    public boolean equals(Employee employee){
-        return fullName.equals(employee.getFullName()) &&
-                department == employee.getDepartment() &&
-                salary == employee.getSalary() &&
-                id == employee.getId();
-    }
 
-    public int hashCode(){
-        return java.util.Objects.hashCode(fullName) +
-                java.util.Objects.hashCode(department) +
-                java.util.Objects.hashCode(salary) +
-                java.util.Objects.hashCode(id);
-
-    }
-
+    @Override
     public String toString(){
         return "full name -> " + fullName + " department -> "
                 + department + " salary -> "
